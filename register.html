@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <link href="/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="homeBtn">
+    <a href="/index.html">Home</a>
+  </div>
+  <br>
+  <div class="main" id="registerForm">
+    <form acion="{{url_for('Register')}}" method="POST">
+      <p>Username:</p>
+      <input type="text" id="username" name="username">
+      <br>
+      <p>Password:</p>
+      <input type="password" id="pasword" name="password">
+
+      <input type="submit" value="Save" name="submit" id="SaveBtn">
+    </form>
+</body>
+
+</html>

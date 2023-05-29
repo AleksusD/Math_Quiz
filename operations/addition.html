@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Addition</title>
+  <link href="/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="homeBtn">
+    <a href="/">Home</a>
+  </div>
+  <h1>Addition</h1>
+  <div class="mainContainer">
+    <div class="main">
+      <div class="questionBox" id="qBox">
+        <span id="questionNum"></span>
+        <p>/10</p>
+        <br />
+      </div>
+      <div class="box">
+        <div class="box1" id="num1Value">
+          <input readonly type="text" id="num1" class="inputTxt" />
+        </div>
+        <div class="plus" id="plusSymbol">
+          <p>+</p>
+        </div>
+        <div class="box2" id="num2Value">
+          <input readonly type="text" id="num2" class="inputTxt" />
+        </div>
+        <div class="equal" id="equalSymbol">
+          <p id="equalSign" style="display: block">=</p>
+        </div>
+        <div class="answer" id="ansBox">
+          <input type="text" id="ans" />
+        </div>
+      </div>
+      <div class="box3">
+        <p id="btnSub" class="btn"></p>
+        <p id="btnStart" class="btn"></p>
+        <p id="btnRestart" class="btn"></p>
+      </div>
+      <div id="ansBtn">
+        <button type="button" class="btn" id="startBtn" onclick="Start()">
+          Start
+        </button>
+      </div>
+      <div class="endText">
+        <span id="text"></span>
+        <span id="score"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var qNum = 0; //jautājuma nummurs
+    var Score = 0; //iegūtais punktu skaits
+    questionNum.innerHTML = "0";
+    let number1;
+    let number2;
+    let sum;
+    let addAvgScore = [];
+
+    function avg(addAvgScore) {
+      let sum = 0;
+      for (let i = 0; i < addAvgScore.length; i++) {
+        sum += addAvgScore[i];
+      }
+      return sum / array.length
+    }  
+    function Start() {
+      number1 = Math.floor(Math.random() * 1000 + 1); //Tiek izvēlēts nejauš skaitlis no 1 līdz 1000
+      number2 = Math.floor(Math.random() * 1000 + 1);
+      sum = number1 + number2;
+      questionNum.innerHTML = qNum = qNum + 1; //tiek palielināts jautājuma nummurs par 1
+
+      document.getElementById("num1").value = number1; //nolasa un nodod nejaušos skaitļus
+      document.getElementById("num2").value = number2;
+      document.getElementById("ans").style.display = "block";
+      document.getElementById("equalSign").style.display = "block";
+
+      ansBtn.innerHTML = "";
+      btnStart.innerHTML = "";
+      btnSub.innerHTML = "<button onclick=Submit() class=btn>Submit</button>";
+
+      if (qNum > 10) {
+        //tiek apstādina spēja turpināt, kad jautājuma nummurs pārsniedz 10
+        qBox.innerHTML = "";
+        num1Value.innerHTML = "";
+        plusSymbol.innerHTML = "";
+        num2Value.innerHTML = "";
+        equalSymbol.innerHTML = "";
+        ansBox.innerHTML = "";
+        text.innerHTML = "";
+        btnStart.innerHTML = "";
+        btnSub.innerHTML = "";
+        score.innerHTML = "You scored " + Score + " out of 10 points!";
+        btnRestart.innerHTML =
+          "<button onclick=Restart() class=btn>Restart</button>"; //tiek restartēta lapa
+        addAvgScore.push(Score);
+      }
+    }
+
+    function Submit() {
+      var answer = document.getElementById("ans").value; //nolasa lietotāja atbildi
+      if (answer == sum) {
+        document.getElementById("text").innerHTML = "Correct!";
+        document.getElementById("ans").value = "";
+        btnStart.innerHTML =
+          "<button onclick=Start() class=btn>Next</button>"; //tiek attēlota poga
+        btnSub.innerHTML = ""; //paslēpj iepriekšējo pogu
+        Score++;
+      } else {
+        document.getElementById("text").innerHTML = "Incorrect!";
+        document.getElementById("ans").value = "";
+        btnStart.innerHTML =
+          "<button onclick=Start() class=btn>Next</button>";
+        btnSub.innerHTML = "";
+      }
+    }
+
+    function Restart() {
+      //funkcija, kas restartē lapu
+      location.reload();
+    }
+  </script>
+</body>
+
+</html>
